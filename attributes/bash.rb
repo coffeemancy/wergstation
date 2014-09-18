@@ -34,7 +34,7 @@ default["wergstation"]["bash"].tap do |bash|
     # command defaults
     "df"    => "df -h",
     "egrep" => "egrep --color",
-    "grep"  => "grep --color",
+    "grep"  => "grep --color -E",
     "ls"    => "ls -x --color -h",
 
     # knife
@@ -72,6 +72,7 @@ default["wergstation"]["bash"].tap do |bash|
     # misc
     "c"    => "cat",
     "e"    => "emacsclient -nw",
+    "g"    => "egrep --color",
     "h"    => "history",
     "l"    => "less -r",
     "lrh"  => "lein trampoline repl :headless",
