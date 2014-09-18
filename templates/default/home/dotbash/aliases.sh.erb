@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# MANAGED BY CHEF IN wergstation::bashrc RECIPE.
+# CHANGES WILL BE OVERWRITTEN!
+#
+
+<% @aliases.each do |k, v| %>
+alias <%= k %>="<%= v %>'
+<% end %>

@@ -4,8 +4,8 @@ driver: vagrant
 platforms:
 - name: xubuntu-14.04
   driver_config:
-    box: xubuntu-trusty-virtualbox
-    box_url: packer/output-vagrant/xubuntu-trusty-virtualbox.box
+    box: vbox-xubuntu-trusty
+    box_url: ../../../packer/output-vagrant/vbox-xubuntu-trusty.box
     customize:
       memory: 2048
       natdnshostresolver1: "on"

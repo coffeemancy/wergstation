@@ -39,4 +39,4 @@
     { "type": "vagrant",
       "keep_input_artifact": true,
       "compression_level": 1,
-      "output": "output-vagrant/{{.BuildName}}-{{.Provider}}.box" }] }
+      "output": "output-vagrant/{{.BuildName}}.box" }] }
