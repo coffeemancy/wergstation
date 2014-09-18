@@ -16,6 +16,7 @@
 
 # Ignore emacs swap files
 \#*
+.\#*
 
 # Ignore merge/diff files
 *.orig

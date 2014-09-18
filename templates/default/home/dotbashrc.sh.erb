@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# MANAGED BY CHEF IN wergstation::bashrc RECIPE.
+# CHANGES WILL BE OVERWRITTEN!
+#
+
+# use 256 colors in compatible xterms
+if [ -n "$DISPLAY" ]; then
+    export TERM=xterm-256color
+fi
+
+# add dataroot stuff
+PATH=$HOME/dataroot/bin:$PATH
+
+# source everything in ~/.bash
+for f in $(ls ~/.bash/); do
+    source ~/.bash/$f
+done
+
+# add rbenv
+PATH=$PATH:$HOME/.rbenv/bin
+
+# add my bin
+PATH=$HOME/bin:$PATH
+
+# enable rbenv shims/autocompletion
+eval "$(rbenv init -)"
+
+# use virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
+
+# add exports
+<% @exports.each do |k, v| %>
+export <%= k %>="<%= v %>"
+<% end %>
