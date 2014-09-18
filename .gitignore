@@ -1,0 +1,50 @@
+# Ignore rake's cache
+.rake_test_cache
+
+# Ignore OSX related files
+.DS_Store
+
+# Ignore Vagrant files
+.vagrant
+
+# Ignore rvmrc file
+.rvmrc
+
+# Ignore VIM swap files
+*.swp
+*.swo
+
+# Ignore emacs swap files
+\#*
+
+# Ignore merge/diff files
+*.orig
+
+# Ignore editor temporary files
+*~
+
+# Ignore metadata.json files in cookbooks
+metadata.json
+
+# Ignore share dir for NFS mounts
+share
+
+# Ignore file locks
+*.lock
+
+# Ignore tmp dir
+tmp/*
+#
+#Ignore kitchen
+.kitchen/*
+
+# ignore symlinks set up for roles/data_bags
+test/integration/roles
+test/integration/data_bags
+
+#Ignore Thor Version
+VERSION
+
+# Documentation should only be in gh-pages branch
+docs/*
+!docs/README.md

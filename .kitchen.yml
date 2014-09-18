@@ -1,0 +1,22 @@
+---
+driver: vagrant
+
+platforms:
+- name: xubuntu-14.04
+  driver_config:
+    box: <%= %>
+    box_url: <%= %>
+    customize:
+      memory: 1024
+      natdnshostresolver1: "on"
+    require_chef_omnibus: false
+
+provisioner: chef_zero
+
+kitchen:
+  test_base_path: spec
+
+suites:
+- name: default
+  run_list:
+  - recipe[wergstation::default]
