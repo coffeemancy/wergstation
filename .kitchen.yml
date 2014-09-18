@@ -4,12 +4,23 @@ driver: vagrant
 platforms:
 - name: xubuntu-14.04
   driver_config:
-    box: <%= %>
-    box_url: <%= %>
+    box: xubuntu-trusty-virtualbox
+    box_url: packer/output-vagrant/xubuntu-trusty-virtualbox.box
     customize:
-      memory: 1024
+      memory: 2048
       natdnshostresolver1: "on"
     require_chef_omnibus: false
+  provisioner:
+    cookbook_files_glob: <%= %w{ README.*
+                                 metadata.rb
+                                 VERSION
+                                 attributes/**/*
+                                 files/**/*
+                                 libraries/**/*
+                                 providers/**/*
+                                 recipes/**/*
+                                 resources/**/*
+                                 templates/**/* }.join(",") %>
 
 provisioner: chef_zero
 

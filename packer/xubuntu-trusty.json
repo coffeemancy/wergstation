@@ -1,0 +1,42 @@
+{ "description": "Packer example to build xubuntu trusty image.",
+  "variables": {
+    "headless": "{{env `PACKER_HEADLESS`}}",
+    "iso_dir": "file://{{ env `HOME`}}/Downloads" },
+  "builders": [
+    { "name": "vbox-xubuntu-trusty",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Ubuntu_64",
+      "headless": "{{ user `headless` }}",
+      "output_directory": "output-virtualbox-iso/vbox-xubuntu-trusty",
+
+      "iso_url": "{{user `iso_dir`}}/xubuntu-14.04.1-desktop-amd64.iso",
+      "iso_checksum": "8b06ac9d76186721312c17a851801e2e",
+      "iso_checksum_type": "md5",
+
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "10h",
+
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "2048"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"]] }],
+  "provisioners": [
+    { "type": "shell",
+      "override": {
+        "vbox-xubuntu-trusty": {
+          "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'" } },
+      "scripts": [
+        "scripts/depends.sh",
+        "scripts/networking.sh",
+        "scripts/sudoers.sh",
+        "scripts/virtualbox.sh",
+        "scripts/vagrant.sh",
+        "scripts/cleanup.sh",
+        "scripts/chef.sh"] }],
+  "post-processors": [
+    { "type": "vagrant",
+      "keep_input_artifact": true,
+      "compression_level": 1,
+      "output": "output-vagrant/{{.BuildName}}-{{.Provider}}.box" }] }
