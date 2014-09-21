@@ -11,7 +11,7 @@ default["wergstation"].tap do |ns|
   # PPAs to install
   ns["repos"] = {
     "docker" => {
-      "components" => %w{ docker ubuntu },
+      "components" => %w{ docker main },
       "key"        => "36A1D7869245C8950F966E92D8576A8BA88D21E9",
       "uri"        => "https://get.docker.io/ubuntu" },
     "ehoover-compholio" => {
@@ -22,26 +22,26 @@ default["wergstation"].tap do |ns|
       "components" => %w{ trusty main },
       "key"        => "FF3997E83CD969B409FB24BC5BB92C09DB82666C",
       "uri"        => "http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu" },
-    "google" => {
-      "components" => %w{ },
-      "key"        => "",
-      "uri"        => "" },
+    "google-chrome" => {
+      "components" => %w{ stable main },
+      "key_uri"    => "https://dl-ssl.google.com/linux/linux_signing_key.pub",
+      "uri"        => "http://dl.google.com/linux/chrome/deb/" },
     "google-talkplugin" => {
-      "components" => %w{ },
-      "key"        => "",
-      "uri"        => "" },
+      "components" => %w{ stable main },
+      "key_uri"    => "https://dl-ssl.google.com/linux/linux_signing_key.pub",
+      "uri"        => "http://dl.google.com/linux/talkplugin/deb/" },
     "oracle-virtualbox" => {
-      "components" => %w{ },
-      "key"        => "",
-      "uri"        => "" },
+      "components" => %w{ trusty contrib },
+      "key_uri"    => "https://www.virtualbox.org/download/oracle_vbox.asc",
+      "uri"        => "http://download.virtualbox.org/virtualbox/debian" },
     "spotify" => {
       "components" => %w{ stable non-free },
       "key"        => "94558F59",
       "uri"        => "http://repository.spotify.com" },
     "webupd8team-java" => {
-      "components" => %w{ },
-      "key"        => "",
-      "uri"        => "" } }
+      "components" => %w{ trusty main },
+      "key"        => "EEA14886",
+      "uri"        => "http://ppa.launchpad.net/webupd8team/java/ubuntu" } }
 
   ## Hash of packages
   #
@@ -73,13 +73,11 @@ default["wergstation"].tap do |ns|
       rdesktop
       spotify-client
       spotify-client-gnome-support
-      tmux
       transmission-common
       transmission-gtk
       tree
-      vagrant
       virtualbox-4.3
-      weechat
+      dkms
       xfce4-goodies },
     # packages to remove
     "remove" => %w{

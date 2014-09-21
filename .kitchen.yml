@@ -9,6 +9,7 @@ platforms:
     customize:
       memory: 2048
       natdnshostresolver1: "on"
+    gui: true
     require_chef_omnibus: false
   provisioner:
     cookbook_files_glob: <%= %w{ README.*
@@ -30,4 +31,11 @@ kitchen:
 suites:
 - name: default
   run_list:
+  - recipe[apt::default]
   - recipe[wergstation::default]
+  attributes:
+    wergstation:
+      user:
+        id: vagrant
+        group: vagrant
+        home: /home/vagrant

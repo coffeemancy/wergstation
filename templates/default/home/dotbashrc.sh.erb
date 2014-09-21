@@ -17,14 +17,8 @@ for f in $(ls ~/.bash/); do
     source ~/.bash/$f
 done
 
-# add rbenv
-PATH=$PATH:$HOME/.rbenv/bin
-
 # add my bin
 PATH=$HOME/bin:$PATH
-
-# enable rbenv shims/autocompletion
-eval "$(rbenv init -)"
 
 # use virtualenvwrapper
 source /usr/local/bin/virtualenvwrapper.sh

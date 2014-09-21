@@ -2,15 +2,7 @@
 #
 # Cookbook Name:: wergstation
 #
-# Recipe:: default
+# Recipe:: xfce
 #
 # Copyfree (F) 2014 Carlton Stedman
 #
-
-%w{ packages
-    bashrc
-    emacs
-    xmonad }.
-  each do |recipe|
-    include_recipe "wergstation::recipe"
-  end

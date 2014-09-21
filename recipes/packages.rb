@@ -23,6 +23,8 @@ ns = node["wergstation"]
 #   action :nothing
 # end
 
+include_recipe "apt::default"
+
 node.default["wergstation"]["update-apt"] = false
 
 # resource to notify
@@ -38,16 +40,14 @@ end
 # Install/remove each PPA. If any are changed, will trigger an `apt-get update`
 # after all the PPA config files are written.
 #
-ns["repos"].each do |action, ppas|
-  ppa_action = action.to_sym
-  ppas.each do |ppa, opts|
-    apt_repository ppa do
-      action ppa_action
-      components opts["components"] if opts.fetch("components", false)
-      key opts["key"]
-      uri opts["uri"]
-      notifies :run, "ruby_block[apt-needs-update]", :immediately
-    end
+ns["repos"].each do |ppa, opts|
+  apt_repository ppa do
+    components opts["components"] if opts.fetch("components", false)
+    key opts.fetch("key", opts["key_uri"])
+    keyserver "keyserver.ubuntu.com" if opts.fetch("key", false)
+    uri opts["uri"]
+    action :add
+    notifies :run, "ruby_block[apt-needs-update]", :immediately
   end
 end
 
@@ -57,13 +57,22 @@ end
 #
 ruby_block "apt-get maybe update" do
   block do
-    if node["wergstation"].fetch("update-apt", false)
-      r = Chef::Resource::Execute.new("apt-get update", run_context)
-      r.run_action :run
-    end
+    r = Chef::Resource::Execute.new("apt-get update", run_context)
+    r.run_action :run
   end
   action :run
+  only_if { node["wergstation"].fetch("update-apt", false) }
 end
+
+## Accept license agreements
+#
+["debconf shared/accepted-oracle-license-v1-1"].
+  product(%w{ select seen }).
+  each do |license, act|
+    execute "echo #{license} #{act} true | debconf-set-selections" do
+      action :run
+    end
+  end
 
 ## Install/remove/etc packages
 #

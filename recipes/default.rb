@@ -10,7 +10,11 @@
 %w{ packages
     bashrc
     emacs
+    rbenv
+    tmux
+    vagrant
+    weechat
     xmonad }.
   each do |recipe|
-    include_recipe "wergstation::recipe"
+    include_recipe "wergstation::#{recipe}"
   end

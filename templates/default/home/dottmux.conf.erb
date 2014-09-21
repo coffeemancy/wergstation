@@ -1,0 +1,20 @@
+#
+# MANAGED BY CHEF IN wergstation::tmux RECIPE.
+# CHANGES WILL BE OVERWRITTEN!
+#
+
+set-option -g history-limit 100000
+
+# use Ctrl+A, cause evil mode emacs anyway
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# Allows for faster key repetition
+set -s escape-time 0
+
+# move around panes with hjkl, as one would in vim after pressing ctrl-w
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R

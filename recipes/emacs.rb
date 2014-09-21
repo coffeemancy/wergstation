@@ -31,7 +31,7 @@ end
 
 ## Render emacs init.el
 #
-template ::File(emacs_d, "init.el") do
+template ::File.join(emacs_d, "init.el") do
   group grp
   mode "0640"
   owner id

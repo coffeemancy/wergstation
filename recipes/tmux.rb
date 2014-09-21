@@ -2,15 +2,28 @@
 #
 # Cookbook Name:: wergstation
 #
-# Recipe:: default
+# Recipe:: tmux
 #
 # Copyfree (F) 2014 Carlton Stedman
 #
 
-%w{ packages
-    bashrc
-    emacs
-    xmonad }.
-  each do |recipe|
-    include_recipe "wergstation::recipe"
-  end
+ns = node["wergstation"]
+
+# user's id, group, home
+id, grp, home = %w{ id group home }.map { |k| ns["user"][k] }
+
+## Install tmux
+#
+package "tmux" do
+  action :install
+end
+
+## Render tmux.conf
+#
+template ::File.join(home, ".tmux.conf") do
+  group grp
+  mode "0640"
+  owner id
+  source "home/dottmux.conf.erb"
+  action :create
+end

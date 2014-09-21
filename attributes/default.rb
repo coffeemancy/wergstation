@@ -14,4 +14,12 @@ default["wergstation"].tap do |ns|
     "group" => "cstedman",
     "home"  => "/home/cstedman"
   }
+
+  # vagrant stuff
+  ns["vagrant"] = {
+    "sha" =>
+      "e2c7af6d032ac551ebd6399265cb9cb64402c9fb96a12289161b7f67afada28a",
+    "uri" =>
+      "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb"
+  }
 end

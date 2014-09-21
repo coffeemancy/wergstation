@@ -8,7 +8,7 @@
 #
 
 include_attribute "wergstation::default"
-home = default["wergstation"]["user"]["home"]
+home = node["wergstation"]["user"]["home"]
 
 # some commonly used shortcuts
 be  = "bundle exec"
@@ -109,7 +109,7 @@ default["wergstation"]["bash"].tap do |bash|
     "pbpaste"  => "xsel --clipboard --output",
     "pslag"    => "ps -lA | head -n 1; ps -lA | grep -i",
     "rmcolors" => "sed -r \"s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\"",
-    "sshkrm"   => "ssh-keygen -f \"/home/cstedman/.ssh/known_hosts\" -R",
+    "sshkrm"   => "ssh-keygen -f \"/#{home}/.ssh/known_hosts\" -R",
     "unknife"  => "rm -f ~/.chef/knife.rb",
     "xdw"      => "xrandr --output DP1 --auto --left-of LVDS1",
     "xsw"      => "xrandr --output DP1 --off",

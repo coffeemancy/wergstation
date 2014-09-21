@@ -19,11 +19,6 @@ function wtf {
     fi
 }
 
-# clone from dyndns github
-function gcl {
-    git clone "git@github.corp.dyndns.com:$@.git"
-}
-
 # on 'cd' also list directory
 function cd {
     builtin cd "$@"
@@ -116,28 +111,4 @@ function vports {
     for x in $(vagrant status | grep running | sed -e 's/\s.*//g'); do
         echo $x && vagrant ssh-config $x | grep -i port
     done
-}
-
-# connect to JIRA
-JIRA_COOKIE="/tmp/jira-$USER.cookie"
-function jiras {
-    printf "Enter password for $USER: "
-    read password
-    d="{\"username\": \"$USER\", \"password\": \"$password\"}"
-    h="Content-Type: application/json"
-    printf "\n\e[35mCreating JIRA session...\e[00m\n"
-    curl -c $JIRA_COOKIE -H "$h" -d "$d" \
-        https://work.corp.dyndns.com/rest/auth/latest/session
-    printf "\n\e[35mWrote cookie: $JIRA_COOKIE\e[00m\n"
-    cat "$JIRA_COOKIE"
-}
-
-# do JIRA stuff
-function jira {
-    if [ ! -e $JIRA_COOKIE ]; then
-        printf "\e[31mCan't read $JIRA_COOKIE! Did you run 'jiras'?\e[00m\n"
-    else
-        h="Content-Type: application/json"
-        curl -b $JIRA_COOKIE -H "$h" "$@" | python -m json.tool
-    fi
 }
