@@ -2,6 +2,22 @@
 
 This repo is used to configure a workstation with chef.
 
+## usage
+
+Usage presumes an already installed (X)ubuntu desktop system.
+
+1. Install git and curl: `sudo apt-get install git curl`
+2. Install chef-client: `curl -L https://www.opscode.com/chef/install.sh | sudo bash`
+3. Create a new key for github: `ssh-keygen`
+4. Add key to approved keys on github
+5. Create a ~/cookbooks dir: `mkdir -p ~/cookbooks`
+6. Clone repos:
+```bash
+git clone git@github.com:carltonstedman/wergstation.git ~/cookbooks/wergstation
+git clone https://github.com/opscode-cookbooks/apt.git
+```
+7. Run chef: `sudo chef-client -z -o wergstaion`
+
 ## packer
 
 This repo includes a sub-directory "packer" which is not typical of most cookbooks. Inside, it allows building of vagrant boxen for testing purposes (namely Xubuntu desktop images).
