@@ -17,7 +17,7 @@ dotxmonad = ::File.join(home, ".xmonad")
 ## Install xmonad and third party tiling algorithms
 #
 %w{ xmonad
-    xmonad-contrib }.
+    libghc-xmonad-contrib-dev }.
   each do |pkg|
     package pkg do
       action :install

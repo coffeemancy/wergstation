@@ -21,6 +21,15 @@ package "weechat" do
   action :install
 end
 
+## Create ~/.weechat
+#
+directory dotweechat do
+  group grp
+  mode "0750"
+  owner id
+  action :create
+end
+
 ## Render weechat configs
 #
 %w{ irc

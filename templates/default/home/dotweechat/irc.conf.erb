@@ -168,7 +168,7 @@ freenode.away_check_max_nicks
 freenode.default_msg_part
 freenode.default_msg_quit
 freenode.notify
-<% settings.fetch("irc", {}).fetch("servers", []).each do |server, opts| %>
+<% @settings.fetch("irc", {}).fetch("servers", []).each do |server, opts| %>
 <% opts.each do |k, v|
      val = v.is_a?(String) ? "\"#{v}\"" : v.to_s %>
 <%= server %>.<%= k %> = <%= val %>
