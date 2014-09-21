@@ -108,8 +108,9 @@ default["wergstation"]["bash"].tap do |bash|
     "pbcopy"   => "xsel --clipboard --input",
     "pbpaste"  => "xsel --clipboard --output",
     "pslag"    => "ps -lA | head -n 1; ps -lA | grep -i",
-    "rmcolors" => "sed -r \"s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\"",
-    "sshkrm"   => "ssh-keygen -f \"/#{home}/.ssh/known_hosts\" -R",
+    "rmcolors" =>
+      "sed -r \\\"s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\\\"",
+    "sshkrm"   => "ssh-keygen -f \\\"/#{home}/.ssh/known_hosts\\\" -R",
     "unknife"  => "rm -f ~/.chef/knife.rb",
     "xdw"      => "xrandr --output DP1 --auto --left-of LVDS1",
     "xsw"      => "xrandr --output DP1 --off",
@@ -127,16 +128,16 @@ default["wergstation"]["bash"].tap do |bash|
   # exports to add to ~/.bashrc
   bash["exports"] = {
     # colorful man pages
-    "LESS_TERMCAP_mb" => "$'\E[01;31m'",
-    "LESS_TERMCAP_md" => "$'\E[01;31m'",
-    "LESS_TERMCAP_me" => "$'\E[0m'",
-    "LESS_TERMCAP_se" => "$'\E[0m'",
-    "LESS_TERMCAP_so" => "$'\E[01;44;33m'",
-    "LESS_TERMCAP_ue" => "$'\E[0m'",
-    "LESS_TERMCAP_us" => "$'\E[01;32m'",
+    "LESS_TERMCAP_mb" => "$'\\E[01;31m'",
+    "LESS_TERMCAP_md" => "$'\\E[01;31m'",
+    "LESS_TERMCAP_me" => "$'\\E[0m'",
+    "LESS_TERMCAP_se" => "$'\\E[0m'",
+    "LESS_TERMCAP_so" => "$'\\E[01;44;33m'",
+    "LESS_TERMCAP_ue" => "$'\\E[0m'",
+    "LESS_TERMCAP_us" => "$'\\E[01;32m'",
 
     # emacs
-    "EDITOR" => "/usr/bin/emacsclient -nw",
+    "EDITOR" => '"/usr/bin/emacsclient -nw"',
 
     # gpg
     "GPGKEY" => "D5F32429",
@@ -147,7 +148,7 @@ default["wergstation"]["bash"].tap do |bash|
     # test kitchen
     "DRIVER_PLUGIN"   => "vagrant",
     "DYN_CHEF_DATA"   => "#{home}/dataroot",
-    "PLATFORMS"       => "ubuntu ubuntu1204 ubuntu1404",
+    "PLATFORMS"       => '"ubuntu ubuntu1204 ubuntu1404"',
     "PROVISIONER"     => "chef_zero",
     "RSPEC_LOG_LEVEL" => "error",
     "SSL_CERT_FILE"   => "#{home}/dataroot/config/cacert.pem",
