@@ -53,9 +53,9 @@ end
 
 ## Create ~/.fonts
 #
-diretory dotfonts do
+directory dotfonts do
   group grp
-  mode "0640"
+  mode "0750"
   owner id
   action :create
 end
@@ -66,27 +66,33 @@ font = "SourceCodePro_FontsOnly-1.017"
 zip_dir = ::File.join(Chef::Config[:file_cache_path], font)
 zip = "#{zip_dir}.zip"
 
+execute "fc-cache -f -v" do
+  cwd home
+  group grp
+  user id
+  action :nothing
+end
+
+# FIXME: 2 -- HACK with chown
+execute "copy #{font} OTFs" do
+  command "cp -v #{::File.join(zip_dir, "OTF")}/* #{dotfonts} "\
+          "&& chown #{id}:#{grp} #{dotfonts}/*"
+  cwd zip_dir
+  action :nothing
+  notifies :run, "execute[fc-cache -f -v]", :immediately
+end
+
 remote_file zip do
   group grp
   mode "0640"
   owner id
   source "http://sourceforge.net/projects/sourcecodepro.adobe/files/#{font}.zip"
   action :create_if_missing
-  notifies :run, "execute[unzip #{zip}]", :immediately
 end
 
 execute "unzip #{zip}" do
   creates zip_dir
   cwd Chef::Config[:file_cache_path]
-  group grp
-  user id
-  action :nothing
-end
-
-execute "cp -v #{::File.join(zip_dir, "OTF")}/* #{dotfonts}" do
-  cwd zip_dir
-  group grp
-  user id
-  action :nothing
-  subscribes :run, "unzip #{zip}", :immediately
+  action :run
+  notifies :run, "execute[copy #{font} OTFs]", :immediately
 end
