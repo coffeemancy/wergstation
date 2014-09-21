@@ -36,6 +36,6 @@ template ::File.join(emacs_d, "init.el") do
   mode "0640"
   owner id
   source "home/dotemacs.d/init.el.erb"
-  variables(:packages => ns["emacs"]["package-archives"])
+  variables(:settings => ns["emacs"])
   action :create
 end

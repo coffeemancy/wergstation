@@ -10,6 +10,10 @@
 default["wergstation"].tap do |ns|
   # PPAs to install
   ns["repos"] = {
+    "cran" => {
+      "components" => %w{ trusty/ },
+      "key"        => "E084DAB9",
+      "uri"        => "http://cran.r-project.org/bin/linux/ubuntu" },
     "docker" => {
       "components" => %w{ docker main },
       "key"        => "36A1D7869245C8950F966E92D8576A8BA88D21E9",
@@ -70,6 +74,8 @@ default["wergstation"].tap do |ns|
       pandoc
       pass
       python3
+      r-base
+      r-base-dev
       rdesktop
       spotify-client
       spotify-client-gnome-support

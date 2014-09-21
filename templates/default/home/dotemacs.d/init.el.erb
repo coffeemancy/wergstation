@@ -24,10 +24,18 @@
 ;; set up package repos
 (require 'package)
 (setq package-archives
-      '(<% @packages.each do |archive, url| %>
+      '(<% @settings.fetch("package-archives", {}).each do |archive, url| -%>
         ("<%= archive %>" . "<%= url %>")
-               <% end %>))
+               <% end -%>))
 (package-initialize)
+
+;; install packages
+<% @settings.fetch("packages", []).each do |pkg| -%>
+(if (not (package-installed-p '<%= pkg %>))
+    (progn
+      (package-refresh-contents)
+      (package-install '<%= pkg %>)))
+<% end -%>
 
 ;; use nlinum for line numbers
 (global-nlinum-mode 1)

@@ -7,10 +7,30 @@
 # Copyfree (F) 2014 Carlton Stedman
 #
 
-default["wergstation"]["emacs"].tap do |emacs|
-  emacs["package-archives"] = {
+default["wergstation"]["emacs"] = {
+  # package archives to use
+  "package-archives" => {
     "gnu"       => "http://elpa.gnu.org/packages/",
     "marmalade" => "http://marmalade-repo.org/packages/",
     "melpa"     => "http://melpa.milkbox.net/packages/",
-    "tromey"    => "http://tromey.com/elpa/" }
-end
+    "tromey"    => "http://tromey.com/elpa/" },
+  # packages to install
+  "packages" => %w{ undo-tree
+                    evil
+                    git-gutter-fringe
+                    nlinum
+                    rainbow-delimiters
+
+                    ruby-mode
+                    inf-ruby
+                    ruby-end
+                    ruby-interpolation
+                    rhtml-mode
+                    rspec-mode
+                    yaml-mode
+
+                    clojure-mode
+                    cider
+
+                    ess }
+}
