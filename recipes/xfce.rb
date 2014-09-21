@@ -35,7 +35,7 @@ cfgs.each do |cfg|
     group grp
     mode "0640"
     owner id
-    source "home/#{cfg.gsub(/\./, "dot")}.erb"
+    source "home/#{cfg.sub(/^\./, "dot")}.erb"
     variables(:font => "Source Code Pro Medium 12")
     action :create
   end
