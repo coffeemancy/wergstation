@@ -4,6 +4,11 @@
 # CHANGES WILL BE OVERWRITTEN!
 #
 
+# make sure to source functions.sh first, if exists
+if [ -f "~/.bash/functions.sh" ]; then
+    source "~/.bash/functions.sh"
+fi
+
 <% @aliases.each do |k, v| %>
 alias <%= k %>="<%= v %>"
 <% end %>

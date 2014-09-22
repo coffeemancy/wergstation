@@ -10,13 +10,13 @@
 include_attribute "wergstation::default"
 home = node["wergstation"]["user"]["home"]
 
-# some commonly used shortcuts
-be  = "bundle exec"
-beb = "#{be} berks"
-bek = "#{be} kitchen"
-k   = "#{be} knife"
-
 default["wergstation"]["bash"].tap do |bash|
+  # some commonly used shortcuts
+  be  = "bundle exec"
+  beb = "#{be} berks"
+  bek = "#{be} kitchen"
+  k   = "#{be} knife"
+
   # bash aliases
   bash["aliases"] = {
     "a" => "alias",
@@ -71,7 +71,6 @@ default["wergstation"]["bash"].tap do |bash|
 
     # misc
     "c"    => "cat",
-    "e"    => "emacsclient -nw",
     "g"    => "egrep --color",
     "h"    => "history",
     "l"    => "less -r",
@@ -122,7 +121,16 @@ default["wergstation"]["bash"].tap do |bash|
     "vre"  => "vagrant reload",
     "vssh" => "vagrant ssh",
     "vst"  => "vagrant status",
-    "vup"  => "vagrant up"
+    "vup"  => "vagrant up",
+
+    # xbacklight
+    "xb+" => "xbacklight +20",
+    "xb-" => "xbacklight -20",
+    "xbs" => "xbacklight -set",
+
+    # xrandr, using xr function
+    "xrd" => "xr DP1",
+    "xrh" => "xr HDMI1"
   }
 
   # exports to add to ~/.bashrc

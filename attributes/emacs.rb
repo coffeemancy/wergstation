@@ -18,6 +18,7 @@ default["wergstation"]["emacs"] = {
   "packages" => %w{ undo-tree
                     evil
                     git-gutter-fringe
+                    markdown-mode
                     nlinum
                     rainbow-delimiters
 

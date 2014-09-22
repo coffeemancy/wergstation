@@ -65,6 +65,7 @@ default["wergstation"].tap do |ns|
       google-talkplugin
       gparted
       htop
+      inxi
       links
       meld
       netflix-desktop
@@ -84,7 +85,9 @@ default["wergstation"].tap do |ns|
       tree
       virtualbox-4.3
       dkms
-      xfce4-goodies },
+      xbacklight
+      xfce4-goodies
+      xtrlock },
     # packages to remove
     "remove" => %w{
       abiword
