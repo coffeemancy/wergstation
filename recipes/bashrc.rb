@@ -49,6 +49,8 @@ template ::File.join(home, ".bashrc") do
   mode "0640"
   owner id
   source "home/dotbashrc.sh.erb"
-  variables(:exports => ns["bash"]["exports"])
+  variables(:settings => {
+              :exports => ns["bash"]["exports"],
+              :paths   => ns["bash"]["paths"] })
   action :create
 end

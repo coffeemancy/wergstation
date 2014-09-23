@@ -9,24 +9,16 @@ if [ -n "$DISPLAY" ]; then
     export TERM=xterm-256color
 fi
 
-# add dataroot stuff
-PATH=$HOME/dataroot/bin:$PATH
+# add paths
+PATH=<%= @settings.fetch(:paths, []).+(["$PATH"]).join(":") %>
 
 # source everything in ~/.bash
 for f in $(ls ~/.bash/); do
     source ~/.bash/$f
 done
 
-# add my bin
-PATH=$HOME/bin:$PATH
-
-# use virtualenvwrapper
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
-
 # add exports
-<% @exports.each do |k, v| %>
+<% @settings.fetch(:exports, {}).each do |k, v| %>
 export <%= k %>=<%= v %>
 <% end %>
 
@@ -44,3 +36,7 @@ export GPG_AGENT_INFO
 export SSH_AUTH_SOCK
 export GPG_TTY=$(tty)
 
+# use virtualenvwrapper
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi

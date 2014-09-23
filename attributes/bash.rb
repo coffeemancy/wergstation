@@ -111,8 +111,6 @@ default["wergstation"]["bash"].tap do |bash|
       "sed -r \\\"s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\\\"",
     "sshkrm"   => "ssh-keygen -f \\\"/#{home}/.ssh/known_hosts\\\" -R",
     "unknife"  => "rm -f ~/.chef/knife.rb",
-    "xdw"      => "xrandr --output DP1 --auto --left-of LVDS1",
-    "xsw"      => "xrandr --output DP1 --off",
 
     # vagrant
     "vd"   => "vagrant destroy",
@@ -150,18 +148,22 @@ default["wergstation"]["bash"].tap do |bash|
     # gpg
     "GPGKEY" => "D5F32429",
 
+    # python
+    "VIRTUALENVWRAPPER_PYTHON" => "/usr/bin/python3",
+
     # ruby
     "RUBYOPT" => "W0",
 
     # test kitchen
     "DRIVER_PLUGIN"   => "vagrant",
-    "DYN_CHEF_DATA"   => "#{home}/dataroot",
     "PLATFORMS"       => '"ubuntu ubuntu1204 ubuntu1404"',
     "PROVISIONER"     => "chef_zero",
     "RSPEC_LOG_LEVEL" => "error",
-    "SSL_CERT_FILE"   => "#{home}/dataroot/config/cacert.pem",
 
     # vagrant
     "VAGRANT_DEFAULT_PROVIDER" => "virtualbox"
   }
+
+  # paths to add, ordered
+  bash["paths"] = [::File.join(home, "bin")]
 end
