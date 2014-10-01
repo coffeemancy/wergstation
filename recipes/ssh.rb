@@ -2,7 +2,7 @@
 #
 # Cookbook Name:: wergstation
 #
-# Recipe:: emacs
+# Recipe:: ssh
 #
 # Copyfree (F) 2014 Carlton Stedman
 #
@@ -12,30 +12,28 @@ ns = node["wergstation"]
 # user's id, group, home
 id, grp, home = %w{ id group home }.map { |k| ns["user"][k] }
 
-emacs_d = ::File.join(home, ".emacs.d")
+dotssh  = ::File.join(home, ".ssh")
+keysdir = ::File.join(dotssh, "keys")
 
-## Install emacs
+## Create ~/.ssh, ~/.ssh/keys
 #
-package "emacs24" do
-  action :install
-end
+[dotssh, keysdir].
+  each do |dir|
+    directory dir do
+      group grp
+      mode "0700"
+      owner id
+      action :create
+    end
+  end
 
-## Create emacs.d
+## Render ~/.ssh/config
 #
-directory emacs_d do
-  group grp
-  mode "0750"
-  owner id
-  action :create
-end
-
-## Render emacs init.el
-#
-template ::File.join(emacs_d, "init.el") do
-  group grp
-  mode "0640"
-  owner id
-  source "home/dotemacs.d/init.el.erb"
-  variables(:settings => ns["emacs"])
-  action :create
-end
+# template ::File.join(dotssh, "config") do
+#   group grp
+#   mode "0600"
+#   owner id
+#   source "home/dotssh/config.erb"
+#   variables(:settings => ns["ssh"])
+#   action :create
+# end

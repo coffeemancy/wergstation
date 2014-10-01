@@ -1,0 +1,14 @@
+;;
+;; MANAGED BY CHEF IN wergstation::clojure RECIPE.
+;; CHANGES WILL BE OVERWRITTEN!
+;;
+
+{:user {:plugins [<% @settings.fetch("plugins", []).
+                       each do |(plugin, version)| -%>
+                  [<%= plugin %> "<%= version %>"]<% end -%>]}
+        :profiles {:dev {:dependencies [speclj "<%=
+                    Hash[*@settings.fetch("plugins", [])].
+                      fetch("speclj", "3.1.0") -%>"]}}
+        :test-paths ["<%= @settings.fetch("test-paths", "spec") %>"]
+        :dependencies [[org.clojure/clojure "<%=
+                        @settings.fetch("clojure", "1.6.0") -%>"]]}}

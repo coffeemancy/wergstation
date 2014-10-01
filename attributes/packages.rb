@@ -69,6 +69,7 @@ default["wergstation"].tap do |ns|
       links
       meld
       netflix-desktop
+      network-manager-openvpn-gnome
       nmap
       openvpn
       oracle-java7-installer
