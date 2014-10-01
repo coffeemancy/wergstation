@@ -86,6 +86,7 @@ default["wergstation"].tap do |ns|
       tree
       virtualbox-4.3
       dkms
+      unzip
       xbacklight
       xfce4-goodies
       xtrlock },

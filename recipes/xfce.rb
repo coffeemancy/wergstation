@@ -45,12 +45,6 @@ cfgs.each do |cfg|
   end
 end
 
-## Install unzip
-#
-package "unzip" do
-  action :install
-end
-
 ## Create ~/.fonts
 #
 directory dotfonts do

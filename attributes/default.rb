@@ -8,6 +8,14 @@
 #
 
 default["wergstation"].tap do |ns|
+  # packer stuff
+  ns["packer"] = {
+    "sha" =>
+      "4f7b8cd96a147f9473cc724397613c8d98bbf0d8cb037b122785ff252eb12581",
+    "uri" =>
+      "https://dl.bintray.com/mitchellh/packer/packer_0.7.1_linux_amd64.zip"
+  }
+
   # user stuff
   ns["user"] = {
     "id"    => "cstedman",
