@@ -14,6 +14,7 @@ id, grp, home = %w{ id group home }.map { |k| ns["user"][k] }
 
 %w{ packages
     bashrc
+    zsh
     emacs
     rbenv
     clojure
@@ -22,8 +23,10 @@ id, grp, home = %w{ id group home }.map { |k| ns["user"][k] }
     vagrant
     packer
     weechat
+    mutt
     xfce
-    xmonad }.
+    xmonad
+    yed }.
   each do |recipe|
     include_recipe "wergstation::#{recipe}"
   end

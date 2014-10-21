@@ -46,16 +46,14 @@ default["wergstation"]["bash"].tap do |bash|
     "ksn"    => "#{k} search node",
 
     # git aliases
-    # FIXME: 2 -- Put these in .gitconfig?
-    "ga."   => "git add . -A",
+    "ga"    => "git add",
     "gb"    => "git branch",
-    "gcam"  => "git commit -a --amend -m",
-    "gcfg"  => "git config --get-regexp \".*\"",
-    "gcm"   => "git commit -a -m",
+    "gcam"  => "git commit -S --amend -m",
+    "gcm"   => "git commit -S -m",
     "gco"   => "git checkout",
     "gd"    => "git difftool",
     "gft"   => "git fetch --tags",
-    "gl"    => "git log",
+    "gl"    => "git log --show-signature",
     "gm"    => "git mergetool",
     "gpl"   => "git pull",
     "gplo"  => "git pull origin",
@@ -68,6 +66,10 @@ default["wergstation"]["bash"].tap do |bash|
     "grrm"  => "git remote remove",
     "gst"   => "git status",
     "gt"    => "git tag",
+
+    # make
+    "mj"  => "make -S -j5",
+    "mjc" => "make -S -j5 clean",
 
     # misc
     "c"    => "cat",
@@ -101,16 +103,21 @@ default["wergstation"]["bash"].tap do |bash|
     "tns"     => "tmux new-session -s",
 
     # utilities
+    "chef-up"  => "sudo chef-client -z -o wyrcan,wergstation",
     "fixmouse" => "synclient TouchpadOff=0",
     "khcz"     => "killall -HUP -r .*chef-zero",
     "mdl"      => "pandoc -s -f markdown -t man | man -l -",
     "pbcopy"   => "xsel --clipboard --input",
     "pbpaste"  => "xsel --clipboard --output",
+    "pong"     => "ping www.google.com -c 1 -W 30",
     "pslag"    => "ps -lA | head -n 1; ps -lA | grep -i",
+    "pwr"      => "upower -i $(upower -e | grep BAT) | grep percent | " \
+                  "sed -e 's/.*:\s*//'",
     "rmcolors" =>
       "sed -r \\\"s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\\\"",
     "sshkrm"   => "ssh-keygen -f \\\"/#{home}/.ssh/known_hosts\\\" -R",
     "unknife"  => "rm -f ~/.chef/knife.rb",
+    "wifi"     => "nmcli nm wifi",
 
     # vagrant
     "vd"   => "vagrant destroy",

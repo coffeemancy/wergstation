@@ -21,12 +21,19 @@ package "weechat" do
   action :install
 end
 
-## Create ~/.weechat
+## Create ~/.weechat and populate with files
 #
-directory dotweechat do
+remote_directory dotweechat do
+  files_group grp
+  files_mode "0640"
+  files_owner id
   group grp
   mode "0750"
   owner id
+
+  # don't delete already existing files
+  purge false
+  source "home/dotweechat"
   action :create
 end
 

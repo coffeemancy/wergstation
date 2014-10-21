@@ -64,10 +64,12 @@ default["wergstation"].tap do |ns|
       google-chrome-stable
       google-talkplugin
       gparted
+      gpw
       htop
       inxi
       links
       meld
+      midori
       netflix-desktop
       network-manager-openvpn-gnome
       nmap

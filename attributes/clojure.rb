@@ -15,10 +15,10 @@ default["wergstation"]["clojure"] = {
                   ["lein-ancient", "0.5.5"],
                   ["lein-difftest", "2.0.0"],
                   ["lein-exec", "0.3.4"],
-                  ["lein-gorilla", "0.3.2"],
+                  ["lein-gorilla", "0.3.3"],
                   ["lein-kibit", "0.0.8"],
                   ["lein-localrepo", "0.5.3"],
-                  ["lein-marginalia", "0.7.1"],
+                  ["lein-marginalia", "0.8.0"],
                   ["speclj", "3.1.0"]],
     "clojure" => "1.6.0"
   }

@@ -1,0 +1,77 @@
+#
+# MANAGED BY CHEF IN wergstation::mutt RECIPE.
+# CHANGES WILL BE OVERWRITTEN!
+#
+set mbox_type=maildir
+set mbox="~/mail/inbox/"
+set spoolfile="~/mail/inbox/"
+set folder="~/mail/"
+set record="~/mail/sent/"
+set postponed="~/mail/postponed/"
+
+# account info
+set from = "<%= @settings["from"] %>"
+set realname = "<%= @settings["realname"] %>"
+
+<% if @settings.fetch("imap", false) %>
+set imap_user = "<%= @settings["imap"]["user"] %>"
+set imap_pass = "<%= @settings["imap"]["pass"] %>"
+<% end %>
+
+<% if @settings.fetch("editor", false) %>
+# editor
+set editor='<%= @settings["editor"] %>'
+<% end %>
+
+## directories
+
+<% if @settings.fetch("imap", false) %>
+# remote directories
+set folder = "<%= @settings["imap"]["folder"] %>"
+set spoolfile = "<%= @settings["imap"].fetch("spoolife", "+INBOX") %>"
+set postponed ="<%= @settings["imap"].fetch("postponed", "+[Gmail]/Drafts") %>"
+<% end %>
+
+# local directories
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+
+<% if @settings.fetch("smtp", false) %>
+# SMTP setup
+set smtp_url = "<%= @settings["smtp"]["url"] %>"
+set smtp_pass = "<%= @settings["smtp"].
+                       fetch("pass", @settings["imap"]["pass"]) %>"
+<% end %>
+
+# mutt session security
+set move = no # don't ask to "move read messages to mbox"!
+set imap_keepalive = 900
+
+# colors
+color hdrdefault cyan default
+color attachment yellow default
+color header brightyellow default "From: "
+color header brightyellow default "Subject: "
+color header brightyellow default "Date: "
+color quoted green default
+color quoted1 cyan default
+color quoted2 green default
+color quoted3 cyan default
+color error red default
+color message white default
+color indicator white red
+color status white blue
+color tree red default
+color search white blue
+color markers red default
+color index yellow default '~O'
+color index yellow default '~N'
+color index brightred default '~F'
+color index blue default '~D'
+
+# identifies email addresses
+color body brightred black [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+
+# identifies urls
+color body brightblue black (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+

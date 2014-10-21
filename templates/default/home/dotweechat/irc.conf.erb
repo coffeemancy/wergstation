@@ -170,7 +170,11 @@ freenode.default_msg_quit
 freenode.notify
 <% @settings.fetch("irc", {}).fetch("servers", []).each do |server, opts| %>
 <% opts.each do |k, v|
-     val = v.is_a?(String) ? "\"#{v}\"" : v.to_s %>
-<%= server %>.<%= k %> = <%= val %>
+     val = case v
+           when TrueClass then nil
+           when String then "\"#{v}\""
+           else v.to_s
+           end %>
+<%= server %>.<%= k %><%= " = #{val}" unless v.nil? %>
 <% end %>
 <% end %>

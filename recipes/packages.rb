@@ -9,20 +9,6 @@
 
 ns = node["wergstation"]
 
-# # initial apt-get update, if add-apt-repository is not installed
-# execute "apt-get update" do
-#   action :run
-#   only_if do
-#     which = Mixlib::ShellOut.new("which add-apt-repository").run_command
-#     /add-apt-repository/.match(which).empty?
-#   end
-#   notifies :install, "package[python-software-properties]", :immediately
-# end
-#
-# package "python-software-properties" do
-#   action :nothing
-# end
-
 include_recipe "apt::default"
 
 node.default["wergstation"]["update-apt"] = false
