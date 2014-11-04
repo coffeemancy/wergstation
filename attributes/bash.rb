@@ -115,8 +115,10 @@ default["wergstation"]["bash"].tap do |bash|
                   "sed -e 's/.*:\s*//'",
     "rmcolors" =>
       "sed -r \\\"s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\\\"",
+    "sag"      => "sudo apt-get",
     "sshkrm"   => "ssh-keygen -f \\\"/#{home}/.ssh/known_hosts\\\" -R",
     "unknife"  => "rm -f ~/.chef/knife.rb",
+    "vong"     => "ping work.corp.dyndns.com -c 1 -W 30",
     "wifi"     => "nmcli nm wifi",
 
     # vagrant

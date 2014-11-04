@@ -39,6 +39,16 @@ template ::File.join(dotxmonad, "xmonad.hs") do
   group grp
   mode "0640"
   owner id
-  source("home/dotxmonad/dotxmonad.hs.erb")
+  source "home/dotxmonad/dotxmonad.hs.erb"
+  action :create
+end
+
+## Render ~/.xsession file
+#
+template ::File.join(home, ".xsession") do
+  group grp
+  mode "0640"
+  owner id
+  source "home/dotxsession.erb"
   action :create
 end

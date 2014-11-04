@@ -30,5 +30,6 @@ template ::File.join(home, ".zshrc") do
   group grp
   owner id
   source "home/dotzshrc.zsh.erb"
+  variables(:plugins => %w{ gpg-agent })
   action :create
 end

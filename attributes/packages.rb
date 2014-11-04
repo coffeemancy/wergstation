@@ -10,6 +10,10 @@
 default["wergstation"].tap do |ns|
   # PPAs to install
   ns["repos"] = {
+    "codealpha" => {
+      "components" => %w{ jaunty main },
+      "key"        => "90A7FC55",
+      "uri"        => "http://ppa.launchpad.net/codealpha/ppa/ubuntu" },
     "cran" => {
       "components" => %w{ trusty/ },
       "key"        => "E084DAB9",
@@ -56,6 +60,7 @@ default["wergstation"].tap do |ns|
   ns["packages"] = {
     # base packages to install
     "install" => %w{
+      dia
       dos2unix
       flashplugin-installer
       gimp
@@ -89,6 +94,7 @@ default["wergstation"].tap do |ns|
       virtualbox-4.3
       dkms
       unzip
+      utimer
       xbacklight
       xfce4-goodies
       xtrlock },

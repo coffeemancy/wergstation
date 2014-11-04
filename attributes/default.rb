@@ -30,4 +30,10 @@ default["wergstation"].tap do |ns|
     "uri" =>
       "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb"
   }
+
+  # yed stuff
+  ns["yed"] = {
+    "uri" =>
+      "http://www.yworks.com/products/yed/demo/yEd-3.13.zip"
+  }
 end
